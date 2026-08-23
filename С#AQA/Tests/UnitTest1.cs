@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
-using C_AQA.DTO.FirsTestDTO;
+using C_AQA.DTO.FirstTestDTO;
 
 namespace C_AQA.Tests
 {

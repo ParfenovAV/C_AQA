@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace C_AQA.DTO.FirsTestDTO;
+namespace C_AQA.DTO.FirstTestDTO;
 
 public class UserDataDTO
 {
