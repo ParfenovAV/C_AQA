@@ -2,7 +2,7 @@
 using System.Net;
 using C_AQA.Interfaces;
 using Refit;
-using C_AQA.DTO;
+using C_AQA.DTO.FirsTestDTO;
 
 namespace C_AQA.Tests
 {

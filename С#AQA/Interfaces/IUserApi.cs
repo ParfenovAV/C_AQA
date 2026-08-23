@@ -1,5 +1,5 @@
 ﻿using Refit;
-using C_AQA.DTO;
+using C_AQA.DTO.FirsTestDTO;
 
 namespace C_AQA.Interfaces
 {
