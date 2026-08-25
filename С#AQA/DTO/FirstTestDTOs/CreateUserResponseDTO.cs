@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
+namespace C_AQA.DTO.FirstTestDTO;
+
 public class CreateUserResponseDTO
 {
     [JsonPropertyName("name")]

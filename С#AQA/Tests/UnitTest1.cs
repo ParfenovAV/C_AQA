@@ -1,7 +1,8 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
+using C_AQA.DTO.FirstTestDTO;
 
-namespace С_AQA
+namespace C_AQA.Tests
 {
     public class Tests
     {
