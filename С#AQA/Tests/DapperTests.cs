@@ -1,4 +1,4 @@
-﻿using C_AQA.DTO;
+﻿using C_AQA.DTO.DapperTestsDTO;
 using C_AQA.Helpers;
 using C_AQA.Interfaces;
 using C_AQA.Interfaces.DapperTestsInterfaces;
@@ -57,6 +57,36 @@ namespace C_AQA.Tests
             var repo = p.Provider.GetService<ICategoryRepository>();
             var users = await repo.GetCategoriesAsync();
             users.Should().HaveCount(6);
+        }
+
+        [Test]
+        public async Task Test006GetProductById()
+        {
+            var repo = p.Provider.GetRequiredService<IProductRepository>();
+            var product = await repo.GetProductByIdAsync(1);
+
+            product.Should().NotBeNull();
+            product.Should().BeEquivalentTo(
+                new ProductDTO(1, "iPhone 15", "Смартфон Apple", 79990, 15, 1));
+        }
+
+        [Test]
+        public async Task Test007GetOrderItemsOfUserOrder()
+        {
+            var repo = p.Provider.GetRequiredService<IOrderRepository>();
+
+            var order = await repo.GetOrderByIdAndUserIdAsync(1, 1);
+            order.Should().NotBeNull();
+            order!.status.Should().Be("Delivered");
+            order.totalPrice.Should().Be(84980);
+
+            var items = await repo.GetOrderItemsAsync(1);
+
+            items.Should().BeEquivalentTo(new[]
+            {
+        new OrderItemDetailsDTO(1, "iPhone 15", 1, 79990),
+        new OrderItemDetailsDTO(1, "Anker PowerBank", 1, 4990)
+    });
         }
 
         //[Test] //генерация базы - раскомментить, а потом запустить тест разово

@@ -5,17 +5,17 @@ using System.Text;
 namespace C_AQA.DTO.DapperTestsDTO
 {
     public record ReviewsDTO
-         (
-         long id,
+        (
+        long id,
 
-         string userId,
+        long userId,
 
-         string productId,
+        long productId,
 
-         long rating,
+        long rating,
 
-         long comment,
+        string comment,
 
-         long createdAt
-         );
+        string createdAt
+        );
 }

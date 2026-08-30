@@ -4,13 +4,11 @@ using System.Text;
 
 namespace C_AQA.DTO.DapperTestsDTO
 {
-    public record OrderItemsDTO
+    public record OrderItemDetailsDTO
         (
-        long id,
-
         long orderId,
 
-        long productId,
+        string productName,
 
         long quantity,
 
