@@ -51,6 +51,14 @@ namespace C_AQA.Tests
             address.Should().NotBeNull();
         }
 
+        [Test]
+        public async Task Test005CheckAllCategoryRepositoryCount()
+        {
+            var repo = p.Provider.GetService<ICategoryRepository>();
+            var users = await repo.GetCategoriesAsync();
+            users.Should().HaveCount(6);
+        }
+
         //[Test] //генерация базы - раскомментить, а потом запустить тест разово
         //public async Task InitialiseTest()
         //{
