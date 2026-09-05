@@ -4,9 +4,7 @@ using System.Text;
 
 namespace C_AQA.DTO.BookStoreDTO
 {
- public record UserResponseDTO(
- string UserId,
- string Username,
- IReadOnlyList<BookDTO> Books
+    public record CollectionOfIsbnsDTO(
+        string Isbn
     );
 }

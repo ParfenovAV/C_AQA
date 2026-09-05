@@ -4,7 +4,7 @@ using System.Text;
 
 namespace C_AQA.DTO.PetsDTO
 {
-    public record Pet(
+    public record PetDTO(
         string Id,
         string Name,
         string Species,

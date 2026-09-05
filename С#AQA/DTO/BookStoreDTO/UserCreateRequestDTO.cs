@@ -4,10 +4,8 @@ using System.Text;
 
 namespace C_AQA.DTO.BookStoreDTO
 {
-    public record TokenUserResponseDTO(
- string Token,
- string Expires,
- string Status,
- string Result
+    public record UserCreateRequestDTO(
+        string UserName,
+        string Password
     );
 }

@@ -4,8 +4,7 @@ using System.Text;
 
 namespace C_AQA.DTO.BookStoreDTO
 {
-    public record UserCreateBodyDTO(
-    string UserName,
-    string Password
-     );
+    public record BookListDTO(
+        List<BookDTO> Books);
+
 }

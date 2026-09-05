@@ -11,8 +11,10 @@ namespace C_AQA.Interfaces.Pets
     {
         [Get("/pets")]
         Task<DataOfAllPetsDTO> GetAllPetsAsync();
+        
         [Get("/pets/{id}")]
-        Task<Pet> GetPetByIdAsync(string id);
+        Task<PetDTO> GetPetByIdAsync(string id);
+       
         [Get("/pets")]
         Task<DataOfAllPetsDTO> GetAllPetsFilteredByAgeMinAndLimitedAsync([Query] int ageMin, [Query] int limit);
     }

@@ -6,6 +6,7 @@ namespace C_AQA.DTO.PetsDTO
 {
     public record DataOfAllPetsDTO
         (
-        List<Pet> Data
+        List<PetDTO> Data,
+        PaginationDTO Pagination
         );
 }
