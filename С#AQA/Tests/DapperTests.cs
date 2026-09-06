@@ -89,6 +89,44 @@ namespace C_AQA.Tests
     });
         }
 
+        [Test]
+        public async Task Test008AccessoriesAreBoughtInDifferentCities()
+        {
+            var repo = p.Provider.GetRequiredService<IOrderRepository>();
+
+            var buyers = await repo.GetBuyersByCategoryNameAsync("Аксессуары");
+
+            // сначала убеждаемся, что покупки вообще есть — иначе проверка городов бессмысленна
+            buyers.Should().NotBeEmpty();
+
+            // берём только уникальные города покупателей
+            var cities = buyers.Select(b => b.city).Distinct().ToList();
+
+            // "разные города" = их больше одного
+            cities.Should().HaveCountGreaterThan(1);
+            cities.Should().OnlyHaveUniqueItems();
+        }
+
+        [Test]
+        public async Task Test009TvBuyersAlsoBuyAccessories()
+        {
+            var repo = p.Provider.GetRequiredService<IOrderRepository>();
+
+            // переиспользуем один и тот же метод для двух категорий — новый SQL не нужен
+            var tvBuyers = await repo.GetBuyersByCategoryNameAsync("Телевизоры");
+            var accessoryBuyers = await repo.GetBuyersByCategoryNameAsync("Аксессуары");
+
+            // если телевизоры никто не покупал — проверять нечего, тест был бы ложно-зелёным
+            tvBuyers.Should().NotBeEmpty();
+
+            // HashSet — быстрый поиск "есть ли такой id среди покупателей аксессуаров"
+            var accessoryBuyerIds = accessoryBuyers.Select(b => b.userId).ToHashSet();
+
+            // каждый покупатель телевизора должен встретиться и среди покупателей аксессуаров
+            tvBuyers.Select(b => b.userId)
+                .Should().OnlyContain(id => accessoryBuyerIds.Contains(id));
+        }
+
         //[Test] //генерация базы - раскомментить, а потом запустить тест разово
         //public async Task InitialiseTest()
         //{

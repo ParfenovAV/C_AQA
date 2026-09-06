@@ -126,6 +126,21 @@ namespace C_AQA.Tests
             act.Should().ThrowAsync<ApiException>(); //.Where(p => p.StatusCode == System.Net.HttpStatusCode.BadRequest) - по статус кодам почему-то не отрабатывает
         }
 
+        [Test]
+        public async Task AddBookWithInvalidIsbnThrowsException()
+        {
+            var token = await GetTokenAsync();
+            var userId = await GetUsersIdAsync();                         
+            
+            var request= new AddCollectionOfBooksToUserDTO
+            (
+                userId,
+                new List<CollectionOfIsbnsDTO> { new CollectionOfIsbnsDTO("INVALID_ISBN") }
+            );
+
+            Func<Task> act = async () => await api.AddBookToUserAsync(request, token);
+            await act.Should().ThrowAsync<ApiException>();
+        }
 
         //вспомогательные методы
         private async Task<string> GetTokenAsync()
