@@ -34,5 +34,21 @@ namespace C_AQA.Repositories
                 "WHERE oi.OrderId = @orderId",
                 new { orderId });
         }
+
+        public async Task<IEnumerable<CategoryBuyerDTO>> GetBuyersByCategoryNameAsync(string categoryName)
+        {
+            await using var db = new SqliteConnection(connection);
+            return await db.QueryAsync<CategoryBuyerDTO>(
+                "SELECT DISTINCT u.Id AS userId, a.City AS city, u.FirstName AS firstName, " +
+                "u.LastName AS lastName, p.Name AS productName " +
+                "FROM OrderItems oi " +
+                "JOIN Products p ON p.Id = oi.ProductId " +
+                "JOIN Categories c ON c.Id = p.CategoryId " +
+                "JOIN Orders o ON o.Id = oi.OrderId " +
+                "JOIN Users u ON u.Id = o.UserId " +
+                "JOIN Addresses a ON a.UserId = u.Id " +
+                "WHERE c.Name = @categoryName",
+                new { categoryName });
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace C_AQA.Interfaces.DapperTestsInterfaces
         Task<OrderDTO?> GetOrderByIdAndUserIdAsync(int orderId, int userId);
 
         Task<IEnumerable<OrderItemDetailsDTO>> GetOrderItemsAsync(int orderId);
+
+        Task<IEnumerable<CategoryBuyerDTO>> GetBuyersByCategoryNameAsync(string categoryName);
     }
 }

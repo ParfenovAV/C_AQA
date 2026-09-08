@@ -7,7 +7,6 @@ namespace C_AQA.DTO.DapperTestsDTO
     public record CategoryDTO
         (
         long id,
-
         string name
         );
 }

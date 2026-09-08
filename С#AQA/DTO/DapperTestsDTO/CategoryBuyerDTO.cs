@@ -4,13 +4,12 @@ using System.Text;
 
 namespace C_AQA.DTO.DapperTestsDTO
 {
-    public record ReviewsDTO
+    public record CategoryBuyerDTO
         (
-        long id,
         long userId,
-        long productId,
-        long rating,
-        string comment,
-        string createdAt
+        string city,
+        string firstName,
+        string lastName,
+        string productName
         );
 }
