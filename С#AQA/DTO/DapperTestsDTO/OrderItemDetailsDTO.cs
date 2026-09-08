@@ -7,11 +7,8 @@ namespace C_AQA.DTO.DapperTestsDTO
     public record OrderItemDetailsDTO
         (
         long orderId,
-
         string productName,
-
         long quantity,
-
         double unitPrice
         );
 }

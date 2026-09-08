@@ -18,7 +18,5 @@ namespace C_AQA.Modules
             services.AddScoped<IOrderRepository>(p => new OrderRepository(connectionString));
             return services;
         }
-
-
     }
 }
