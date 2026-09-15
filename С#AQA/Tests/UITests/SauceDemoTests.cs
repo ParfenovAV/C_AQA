@@ -19,9 +19,8 @@ namespace C_AQA.Tests.UITests
             var loginButton = Page.GetByRole(AriaRole.Button, new() { Name = "Login" });
             await loginButton.ClickAsync();
 
-            var titleLabel = Page.Locator("//span[@class='title']");
-            var title = await titleLabel.TextContentAsync();
-            title.Should().Be("Products");
+            var productsTitle = Page.Locator("//span[text()='Products']");
+            await Assertions.Expect(productsTitle).ToBeVisibleAsync();
         }
     }
 }
