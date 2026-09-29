@@ -7,10 +7,14 @@ namespace C_AQA.ForUI.Pages.SauceDemo
         protected CartItemsBasePage(IPage page) : base(page) { }
 
         private ILocator CartItems => Page.Locator(".cart_item");
-
+       
         // карточка товара по названию
         private ILocator CartItem(string productName) =>
             CartItems.Filter(new() { HasText = productName });
+        
+        // цена товара в корзине по названию
+        private ILocator CartItemPrice(string productName) =>
+            CartItem(productName).Locator(".inventory_item_price");
 
         public async Task CheckProductsCountAsync(int count)
         {
@@ -19,9 +23,8 @@ namespace C_AQA.ForUI.Pages.SauceDemo
 
         public async Task CheckProductAsync(string productName, string price)
         {
-            var item = CartItem(productName);
-            await Assertions.Expect(item).ToBeVisibleAsync();
-            await Assertions.Expect(item.Locator(".inventory_item_price")).ToHaveTextAsync(price);
+            await Assertions.Expect(CartItem(productName)).ToBeVisibleAsync();
+            await Assertions.Expect(CartItemPrice(productName)).ToHaveTextAsync(price);
         }
     }
 }

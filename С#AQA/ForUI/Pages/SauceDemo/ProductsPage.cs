@@ -15,6 +15,14 @@ namespace C_AQA.ForUI.Pages.SauceDemo
         private ILocator ProductCard(string productName) =>
             Page.Locator(".inventory_item").Filter(new() { HasText = productName });
 
+        // кнопка "Add to cart" в карточке товара
+        private ILocator AddToCartButton(string productName) =>
+            ProductCard(productName).GetByRole(AriaRole.Button, new() { Name = "Add to cart" });
+
+        // цена в карточке товара
+        private ILocator ProductPrice(string productName) =>
+            ProductCard(productName).Locator(".inventory_item_price");
+
         public async Task CheckProductsTitleAsync()
         {
             await Assertions.Expect(PageTitle).ToHaveTextAsync("Products");
@@ -23,15 +31,13 @@ namespace C_AQA.ForUI.Pages.SauceDemo
         // главное требование: работает для ЛЮБОГО товара на странице
         public async Task AddToCartAsync(string productName)
         {
-            await ProductCard(productName)
-                .GetByRole(AriaRole.Button, new() { Name = "Add to cart" })
-                .ClickAsync();
+            await AddToCartButton(productName).ClickAsync();
         }
 
         // задача со звёздочкой: цена читается со страницы, а не из теста
         public async Task<string> GetPriceAsync(string productName)
         {
-            return await ProductCard(productName).Locator(".inventory_item_price").InnerTextAsync();
+            return await ProductPrice(productName).InnerTextAsync();
         }
 
         public async Task GoToCartAsync()

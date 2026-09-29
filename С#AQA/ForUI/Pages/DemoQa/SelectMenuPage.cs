@@ -13,6 +13,10 @@ namespace C_AQA.ForUI.Pages.DemoQa
         // отображаемое значение react-select; класс захеширован,
         // стабилен только суффикс -singleValue
         private ILocator SelectOneValue => SelectOneDropdown.Locator("div[class*='singleValue']");
+       
+        // опция выпадающего списка Select One по названию
+        private ILocator SelectOneOption(string optionName) =>
+            SelectOneDropdown.GetByRole(AriaRole.Option, new() { Name = optionName, Exact = true });
 
         public SelectMenuPage(IPage page)
         {
@@ -34,9 +38,7 @@ namespace C_AQA.ForUI.Pages.DemoQa
         public async Task SelectOneOptionAsync(string optionName)
         {
             await SelectOneDropdown.ClickAsync();
-            await SelectOneDropdown
-                .GetByRole(AriaRole.Option, new() { Name = optionName, Exact = true })
-                .ClickAsync();
+            await SelectOneOption(optionName).ClickAsync();
         }
 
         public async Task CheckSelectOneValueAsync(string expectedOption)
