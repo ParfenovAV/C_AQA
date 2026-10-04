@@ -35,6 +35,9 @@
     <None Update="Resources\SauceDemoUsers.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\student.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\UsersData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
