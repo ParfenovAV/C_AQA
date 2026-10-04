@@ -1,6 +1,6 @@
 using C_AQA.ForUI.Pages.SauceDemo;
 using C_AQA.DataProvider;
-using C_AQA.ForUI.Pages.SauceDemo;
+
 
 namespace C_AQA.Tests.UITests
 {
@@ -29,7 +29,7 @@ namespace C_AQA.Tests.UITests
         }
 
         [TestCaseSource(typeof(SauceDemoUsersDataProvider),
-    nameof(SauceDemoUsersDataProvider.GetValidUsers))]
+            nameof(SauceDemoUsersDataProvider.GetValidUsers))]
         public async Task LoginWithAllValidUsers(string userName, string password)
         {
             var loginPage = new LoginPage(Page);
