@@ -1,4 +1,5 @@
 using C_AQA.ForUI.Pages.SauceDemo;
+using C_AQA.DataProvider;
 
 
 namespace C_AQA.Tests.UITests
@@ -23,6 +24,22 @@ namespace C_AQA.Tests.UITests
             await loginPage.OpenAsync();
             await loginPage.LoginAsync(UserName, Password);
 
+            await productsPage.CheckPageOpenAsync();
+            await productsPage.CheckProductsTitleAsync();
+        }
+
+        [TestCaseSource(typeof(SauceDemoUsersDataProvider),
+            nameof(SauceDemoUsersDataProvider.GetValidUsers))]
+        public async Task LoginWithAllValidUsers(string userName, string password)
+        {
+            var loginPage = new LoginPage(Page);
+            var productsPage = new ProductsPage(Page);
+
+            // открыть сайт и залогиниться пользователем из CSV
+            await loginPage.OpenAsync();
+            await loginPage.LoginAsync(userName, password);
+
+            // проверить, что попали на страницу Products
             await productsPage.CheckPageOpenAsync();
             await productsPage.CheckProductsTitleAsync();
         }
