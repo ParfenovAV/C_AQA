@@ -32,12 +32,14 @@ namespace C_AQA.ForUI.Pages.DemoQa
         private ILocator CalendarDay(int day) =>
             Page.Locator($".react-datepicker__day--{day:D3}:not(.react-datepicker__day--outside-month)");
 
-        // радиокнопка/чекбокс кликаются по label; номер = позиция в enum + 1
+        // радиокнопка/чекбокс скрыты, кликаем по label;
+        // у радиокнопки value совпадает с названием гендера ("Male"), label идёт сразу за ней
         private ILocator GenderLabel(GenderType gender) =>
-            Page.Locator($"label[for='gender-radio-{(int)gender + 1}']");
+            Page.Locator($"input[value='{gender}'] + label");
 
+        // у чекбоксов value — цифры, поэтому ищем label по тексту ("Sports", "Reading", "Music")
         private ILocator HobbyLabel(HobbyType hobby) =>
-            Page.Locator($"label[for='hobbies-checkbox-{(int)hobby + 1}']");
+            Page.Locator("#hobbiesWrapper label", new() { HasText = hobby.ToString() });
 
         // опция выпадающего списка (Subjects, State, City) по точному тексту
         private ILocator Option(string text) =>
